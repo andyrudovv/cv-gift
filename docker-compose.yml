@@ -1,0 +1,16 @@
+
+
+services:
+  cv-backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+
+  cv-bot:
+    build: ./bot
+    depends_on:
+      - cv-backend
+    environment:
+      - TELEGRAM_BOT_KEY=${TELEGRAM_BOT_KEY}
